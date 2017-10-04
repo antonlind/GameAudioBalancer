@@ -1,20 +1,35 @@
 ﻿using System;
-using AudioSwitcher.AudioApi.CoreAudio;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace GameAudioBalancer
 {
-    internal class Program
+    public class Program
     {
-        public static void Main(string[] args)
+        [DllImport("Kernel32")]
+        private static extern bool SetConsoleCtrlHandler(EventHandler handler, bool add);
+
+        private delegate bool EventHandler();
+
+        private static void Main(string[] args)
         {
-            var controller = new CoreAudioController();
+            var balancer = new AudioBalancer();
 
-            foreach (var device in controller.GetDevices())
+            SetConsoleCtrlHandler(() =>
             {
-                Console.Write(device.Name);
-            }
+                balancer.Dispose();
 
-            Console.Write("Done");
+                Console.WriteLine("Exiting system due to external CTRL-C, or process kill, or shutdown");
+                Thread.Sleep(5000); //simulate some cleanup delay
+                Console.WriteLine("Cleanup complete");
+                Application.Exit();
+                Environment.Exit(-1);
+
+                return true;
+            }, true);
+
+            Application.Run();
         }
     }
 }
