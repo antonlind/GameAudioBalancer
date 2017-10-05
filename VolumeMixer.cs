@@ -3,7 +3,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-public class VolumeMixer
+public partial class VolumeMixer
 {
     public static float? GetApplicationVolume(int pid)
     {
