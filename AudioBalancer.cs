@@ -1,23 +1,30 @@
 ﻿using System;
 using Gma.System.MouseKeyHook;
+using Reactive.Bindings;
 
 namespace GameAudioBalancer
 {
     public class AudioBalancer
     {
-        public IKeyboardMouseEvents InputHook;
+        private readonly IKeyboardMouseEvents _inputHook;
+        private readonly ReactiveProperty<string> _asd = new ReactiveProperty<string>();
 
         public AudioBalancer()
         {
-            foreach (var entry in VolumeMixer.GetPresentableMixerEntries())
-            {
-                Console.WriteLine(entry.Id);
-            }
+            _inputHook = Hook.GlobalEvents();
+
+//            foreach (var entry in VolumeMixer.GetPresentableMixerEntries())
+//            {
+//                Console.WriteLine(entry.Id);
+//            }
+
+            _inputHook.KeyDown += (sender, args) => { _asd.Value = args.KeyCode.ToString(); };
+            _asd.Subscribe(Console.WriteLine);
         }
 
         public void Dispose()
         {
-            InputHook.Dispose();
+            _inputHook.Dispose();
         }
     }
 }
