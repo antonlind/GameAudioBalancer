@@ -20,9 +20,9 @@ namespace GameAudioBalancer
             {
                 balancer.Dispose();
 
-                Console.WriteLine("Exiting system due to external CTRL-C, or process kill, or shutdown");
-                Thread.Sleep(5000); //simulate some cleanup delay
-                Console.WriteLine("Cleanup complete");
+                Console.WriteLine("\n");
+                Console.WriteLine("Have a good day!");
+                Thread.Sleep(5000);
                 Application.Exit();
                 Environment.Exit(-1);
 
