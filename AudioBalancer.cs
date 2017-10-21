@@ -51,10 +51,10 @@ namespace GameAudioBalancer
 
             _inputHook.KeyDown += (sender, args) =>
             {
-                if (args.KeyCode == Keys.Up && currentBalance.Value < 50)
+                if (args.KeyCode == Keys.F10 && args.Control && currentBalance.Value < 50)
                     currentBalance.Value++;
 
-                if (args.KeyCode == Keys.Down && currentBalance.Value > -50)
+                if (args.KeyCode == Keys.F11 && args.Control && currentBalance.Value > -50)
                     currentBalance.Value--;
             };
 
@@ -73,12 +73,12 @@ namespace GameAudioBalancer
                 Console.Clear();
                 Console.WriteLine("Balancing!");
                 Console.WriteLine("\n");
-                Console.WriteLine("Press arrow-up to shift focus towards " + selectedShortName);
-                Console.WriteLine("Press arrow-down to shift focus towards the non selected apps");
+                Console.WriteLine("Press ctrl-f10 to move focus towards " + selectedShortName);
+                Console.WriteLine("Press ctrl-f11 to move focus towards the non selected apps");
                 Console.WriteLine("\n");
-                Console.WriteLine(selectedShortName + ": " + (50 + i) + "\t" + "Others: " + (50 - i));
+                Console.WriteLine(selectedShortName + ": " + (50 + i) + "\t" + "Other apps: " + (50 - i));
                 Console.WriteLine("\n");
-                Console.WriteLine("Press CTRL-C or just close the window to exit");
+                Console.WriteLine("Press ctrl-c or just close the window to exit");
             });
         }
 
