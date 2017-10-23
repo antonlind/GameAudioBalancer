@@ -21,8 +21,12 @@ namespace GameAudioBalancer
                 balancer.Dispose();
 
                 Console.WriteLine("\n");
-                Console.WriteLine("Have a good day!");
-                Thread.Sleep(5000);
+                Console.Write(".");
+                Thread.Sleep(1000);
+                Console.Write(".");
+                Thread.Sleep(1000);
+                Console.Write(".");
+                Thread.Sleep(1000);
                 Application.Exit();
                 Environment.Exit(-1);
 
