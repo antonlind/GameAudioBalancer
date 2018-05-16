@@ -1,4 +1,3 @@
-*.sln
 .idea/
 obj/
 bin/
@@ -20,3 +19,6 @@ bin/
 project.lock.json
 project.assets.json
 *.nuget.props
+
+# Rider specific
+*\.DotSettings\.user
